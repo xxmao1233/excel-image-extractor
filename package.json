@@ -1,0 +1,42 @@
+{
+  "name": "excel-image-extractor",
+  "version": "1.0.0",
+  "description": "Excel 图片提取工具 - 从 Excel 表格中提取图片并按指定列命名打包下载",
+  "main": "main.js",
+  "author": "excel-image-extractor",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win"
+  },
+  "build": {
+    "appId": "com.excelimage.extractor",
+    "productName": "Excel图片提取工具",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "index.html",
+      "assets/**/*",
+      "package.json"
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Excel图片提取工具"
+    }
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  }
+}
