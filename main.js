@@ -42,5 +42,11 @@ app.on('web-contents-created', (_event, contents) => {
       event.preventDefault();
     }
   });
-  contents.setWindowOpenHandler(() => ({ action: 'deny' }));
+  contents.setWindowOpenHandler(({ url }) => {
+    // 允许空窗口（用于图片预览弹窗），禁止其他外部链接
+    if (url === 'about:blank' || url === '') {
+      return { action: 'allow' };
+    }
+    return { action: 'deny' };
+  });
 });
